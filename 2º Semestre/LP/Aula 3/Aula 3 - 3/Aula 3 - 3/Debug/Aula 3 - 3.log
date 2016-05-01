@@ -1,0 +1,10 @@
+﻿  Ensaio.cpp
+c:\users\anderson\documents\fatec\2º semestre\lp\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(28): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
+c:\users\anderson\documents\fatec\2º semestre\lp\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(28): warning C4309: 'initializing': truncation of constant value
+c:\users\anderson\documents\fatec\2º semestre\lp\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(48): warning C4018: '<': signed/unsigned mismatch
+c:\users\anderson\documents\fatec\2º semestre\lp\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(117): warning C4018: '<': signed/unsigned mismatch
+c:\users\anderson\documents\fatec\2º semestre\lp\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(34): warning C4101: 'vet': unreferenced local variable
+c:\users\anderson\documents\fatec\2º semestre\lp\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(121): error C2059: syntax error: '}'
+c:\users\anderson\documents\fatec\2º semestre\lp\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(121): error C2143: syntax error: missing ';' before '}'
+c:\users\anderson\documents\fatec\2º semestre\lp\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(127): error C2143: syntax error: missing ';' before '{'
+c:\users\anderson\documents\fatec\2º semestre\lp\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(127): error C2447: '{': missing function header (old-style formal list?)

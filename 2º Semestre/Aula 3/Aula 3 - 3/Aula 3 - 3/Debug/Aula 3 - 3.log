@@ -1,0 +1,6 @@
+﻿  Ensaio.cpp
+c:\users\anderson\documents\fatec\2º semestre\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(28): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
+c:\users\anderson\documents\fatec\2º semestre\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(28): warning C4309: 'initializing': truncation of constant value
+c:\users\anderson\documents\fatec\2º semestre\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(48): warning C4018: '<': signed/unsigned mismatch
+c:\users\anderson\documents\fatec\2º semestre\aula 3\aula 3 - 3\aula 3 - 3\ensaio.cpp(34): warning C4101: 'vet': unreferenced local variable
+  Aula 3 - 3.vcxproj -> C:\Users\Anderson\Documents\fatec\2º Semestre\Aula 3\Aula 3 - 3\Debug\Aula 3 - 3.exe
