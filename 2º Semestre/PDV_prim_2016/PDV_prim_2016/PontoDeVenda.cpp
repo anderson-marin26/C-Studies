@@ -1,6 +1,19 @@
 // Programa Ponto de Venda - FATEC - MC - Anderson Marin de Ramos - 04/05/2016 - Versão 0.0
 #include "PontoDeVenda.h"
 
+int PedeUmProdutoValido(char *szAcao, CONFIGURACAO stConfig, PRODUTO stProduto)
+{                                         
+	cout << "\n\tAção: " << szAcao << endl;
+	do
+	{
+		cout << "Informe o codigo do produto entre 1 e " << stConfig.nQtdeProdutos << endl
+			<< "Ou zero para cancelar a transação: ";
+		cin >> stProduto.nCodProduto;									// pede o código
+		if (stProduto.nCodProduto == 0)                               // cancelar a transação?
+			return 0;                                   // indica que a transação foi cancelada
+	} while (stProduto.nCodProduto < 1 || stProduto.nCodProduto > stConfig.nQtdeProdutos);
+	return stProduto.nCodProduto;                                     // devolve o código que foi digitado
+}
 // entry point
 void main(void) {
 	CONFIGURACAO stConfig;						// struct para conter a configuração
@@ -100,5 +113,36 @@ void main(void) {
 			stConfig.stDtInicio.nAno
 		);
 		cout << cWork << endl;
+		cout << CADASTRAR_PRODUTO << " - Cadastrar um novo produto" << endl;
+		cout << EXCLUIR_PRODUTO << "- Excluir um produto existente" << endl;
+		cout << MOSTRAR_PRODUTO << " - Exibir dados de um produto" << endl;
+		cout << VENDER_PRODUTO << " - Vender um produto" << endl;
+		cout << SAIR_DO_PROGRAMA << " - Sair do programa" << endl;
+		cout << "\tSelection:";
+		cin >> cOpcao;
+		cOpcao = toupper(cOpcao);
+		switch (cOpcao) {
+			case CADASTRAR_PRODUTO:
+				stProduto.nCodProduto = PedeUmProdutoValido("Cadastrar Produto", stConfig, stProduto);
+				break;
+			case EXCLUIR_PRODUTO:
+				break;
+			case MOSTRAR_PRODUTO:
+				break;
+			case VENDER_PRODUTO:
+				break;
+			case SAIR_DO_PROGRAMA:
+				cout << "Sair realmente? (S ou N): ";
+				cin >> cOpcao;
+				if (cOpcao == 's' || cOpcao == 'S') {
+					fclose(fdConfig);
+					fclose(fdProduto);
+					exit(0);						//retorna ao S.O sem erro
+				}
+				break;								//volta ao menu
+			default:
+				cout << "\n\tOpção invalida!" << endl;
+				PAUSA;
+		}
 	}// while
 }// main

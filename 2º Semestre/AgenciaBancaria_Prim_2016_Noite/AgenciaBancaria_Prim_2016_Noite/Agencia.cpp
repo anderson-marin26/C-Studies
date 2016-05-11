@@ -6,6 +6,7 @@
 void main(void) {
 	int i,							// indice e contador
 		nCodCliente;				// recebe o codigo do cliente
+	double cheque;
 	char cOpcao,					// opcao do operador
 		szOperador[]="Anderson Marin de Ramos",
 		cTrabalho[200];				// sprintf_s
@@ -91,18 +92,178 @@ void main(void) {
 					cout << "Erro de gracação do cliente: " << nCodCliente << endl;
 					PAUSA;
 				}
+				else {
+					cout << "Cliente de codigo: " << nCodCliente << " de nome: " << stCliente.cNome << " cadastrado com sucesso." << endl;
+					PAUSA;
+				}
+
 				break;					// volta ao menu
 			case EXCLUIR_CLIENTE:
+				nCodCliente = PedirCodigoCliente("Excluir Cliente");
+				if (nCodCliente == 0) {
+					break;
+				}
+				if (stCliente.cAtivo == INATIVO) {
+					cout << "Cliente não cadastrado"<< endl;
+					PAUSA;
+					break;
+				}
+				else if(!LerClientePosicional(nCodCliente, &stCliente, fdCadastro)) {
+					cout << "Erro de leitura" << endl;
+					PAUSA;
+					break;
+				}
+				else if (!GravarClientePosicional(nCodCliente, &stCliente, fdCadastro)) {
+					cout << "Erro durantee e exclusão" << endl;
+					PAUSA;
+					break;
+				}
+				else {
+					stCliente.cAtivo = INATIVO;
+				}
+
 				break;
 			case MOSTRAR_CLIENTE:
+				nCodCliente = PedirCodigoCliente("Mostrar cliente");
+				if (nCodCliente == 0) {
+					break;
+				}
+				if (!LerClientePosicional(nCodCliente, &stCliente, fdCadastro)) {
+					cout << "Erro de Leitura" << endl;
+					PAUSA;
+					break;
+				}
+				else if (stCliente.cAtivo == INATIVO) {
+					cout << "Cliente não cadastrado" << endl;
+					PAUSA;
+					break;
+				}
+				else {
+					sprintf_s(cTrabalho, sizeof(cTrabalho), "Codigo: %4d  Nome: %-40s Ultimo acesso: %02d/%02d/%04d", stCliente.nCodigo, stCliente.cNome, stCliente.stDataUltimoAcesso);
+					cout << cTrabalho << endl;
+					PAUSA;
+				}
 				break;
 			case DEBITAR_CHEQUE:
+				nCodCliente = PedirCodigoCliente("Debitar o cheque");
+				if (nCodCliente == 0) {
+					break;
+				}
+				if (!LerClientePosicional(nCodCliente, &stCliente, fdCadastro)) {
+					cout << " Erro de leitura";
+					PAUSA;
+					break;
+				}
+				if (stCliente.cAtivo == INATIVO) {
+					cout << "Cliente nao cadastrado";
+					PAUSA;
+					break;
+				}
+				do
+				{
+					cout << "Valor do cheque: ";
+					cin >> cheque;
+				} while (cheque<0);
+				if (cheque > stCliente.dSaldo) {
+					cout << "Saldo atual " << stCliente.dSaldo << " insuficiente!" << endl;
+					PAUSA;
+					break;
+				}
+
+				stCliente.dTotalDebitos += cheque;
+				stCliente.dSaldo -= cheque;
+				stCliente.stDataUltimoAcesso.nDia = stTime.wDay;
+				stCliente.stDataUltimoAcesso.nMes = stTime.wMonth;
+				stCliente.stDataUltimoAcesso.nAno = stTime.wYear;
+
+				if (!GravarClientePosicional(nCodCliente, &stCliente, fdCadastro))
+				{
+					cout << "Erro de debito "<< endl;
+				}
+
 				break;
 			case CREDITAR_DEPOSITO:
+				nCodCliente = PedirCodigoCliente("Depositar");
+				if (nCodCliente == 0) {
+					break;
+				}
+
+				if (!LerClientePosicional(nCodCliente, &stCliente, fdCadastro))			//erro de leitura?
+				{
+					cout << " Erro de leitura"<< endl;
+					PAUSA;
+					break;
+				}
+				if (stCliente.cAtivo == INATIVO) {
+					cout << "Cliente nao cadastrado"<< endl;
+					PAUSA;
+					break;
+				}
+
+				do {
+					cout << "Insira o valor a ser creditado (Valor positivo): ";
+					cin >> cheque;
+				} while (cheque < 0);
+
+				stCliente.dTotalCreditos += cheque;
+				stCliente.dSaldo += cheque;
+				stCliente.stDataUltimoAcesso.nDia = stTime.wDay;
+				stCliente.stDataUltimoAcesso.nMes = stTime.wMonth;
+				stCliente.stDataUltimoAcesso.nAno = stTime.wYear;
+
+				if (!GravarClientePosicional(nCodCliente, &stCliente, fdCadastro))
+				{
+					cout << "Erro de deposito"<< endl;
+				}
 				break;
 			case LISTAR_CADASTRO:
+				nCodCliente = PedirCodigoCliente("Listar clientes");
+				if (nCodCliente == 0) {
+					break;
+				}
+				for (i = nCodCliente; i < QTDE_CLIENTES;) {
+					if (!LerClientePosicional(nCodCliente, &stCliente, fdCadastro))			//erro de leitura?
+					{
+						cout << " Erro de leitura"<< endl;
+						PAUSA;
+						break;		
+					}
+					if (stCliente.cAtivo == INATIVO) {
+						nCodCliente = ++i;
+						continue;
+					}
+					sprintf_s(cTrabalho, sizeof(cTrabalho), "Código: %4d Nome: %-40s Ultimo acesso:  %02d/%02d/%04d",
+						stCliente.nCodigo, stCliente.cNome, stCliente.stDataUltimoAcesso.nDia, stCliente.stDataUltimoAcesso.nMes, stCliente.stDataUltimoAcesso.nAno);
+					cout << cTrabalho << endl;
+
+					nCodCliente = ++i;
+				}
+				PAUSA;
 				break;
 			case EXIBIR_SALDO_TOTAL:
+				nCodCliente = PedirCodigoCliente("Exibir saldo do Cliente");
+				if (nCodCliente == 0) {
+					break;
+				}
+
+				if (!LerClientePosicional(nCodCliente, &stCliente, fdCadastro))			//erro de leitura?
+				{
+					cout << " Erro de leitura"<< endl;
+					PAUSA;
+					break;
+				}
+				if (stCliente.cAtivo == INATIVO) {
+					cout << "Cliente nao cadastrado"<< endl;
+					PAUSA;
+					break;
+				}
+				else
+				{
+					sprintf_s(cTrabalho, sizeof(cTrabalho), "Código: %4d Nome: %-40s Saldo: %.2f  Ultimo acesso: %02d/%02d/%04d",
+						stCliente.nCodigo, stCliente.cNome, stCliente.dSaldo, stCliente.stDataUltimoAcesso.nDia, stCliente.stDataUltimoAcesso.nMes, stCliente.stDataUltimoAcesso.nAno);
+					cout << cTrabalho << endl;
+					PAUSA;
+				}
 				break;
 			case SAIR_DO_PROGRAMA:
 				cout << "Sair realmente? (S ou N): ";
