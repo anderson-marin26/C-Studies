@@ -1,9 +1,0 @@
-﻿  Ensaio.cpp
-c:\users\alan_\dropbox\ads\2º semestre\lp\ex_24.02\vetores noite_2016\vetores noite_2016\ensaio.cpp(33): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
-c:\users\alan_\dropbox\ads\2º semestre\lp\ex_24.02\vetores noite_2016\vetores noite_2016\ensaio.cpp(33): warning C4309: 'initializing': truncation of constant value
-c:\users\alan_\dropbox\ads\2º semestre\lp\ex_24.02\vetores noite_2016\vetores noite_2016\ensaio.cpp(55): warning C4018: '<': signed/unsigned mismatch
-c:\users\alan_\dropbox\ads\2º semestre\lp\ex_24.02\vetores noite_2016\vetores noite_2016\ensaio.cpp(104): warning C4129: ' ': unrecognized character escape sequence
-c:\users\alan_\dropbox\ads\2º semestre\lp\ex_24.02\vetores noite_2016\vetores noite_2016\ensaio.cpp(111): warning C4129: ' ': unrecognized character escape sequence
-c:\users\alan_\dropbox\ads\2º semestre\lp\ex_24.02\vetores noite_2016\vetores noite_2016\ensaio.cpp(115): warning C4018: '<': signed/unsigned mismatch
-c:\users\alan_\dropbox\ads\2º semestre\lp\ex_24.02\vetores noite_2016\vetores noite_2016\ensaio.cpp(39): warning C4101: 'vet': unreferenced local variable
-  Vetores noite_2016.vcxproj -> C:\Users\alan_\Dropbox\ADS\2º Semestre\LP\Ex_24.02\Vetores noite_2016\Debug\Vetores noite_2016.exe

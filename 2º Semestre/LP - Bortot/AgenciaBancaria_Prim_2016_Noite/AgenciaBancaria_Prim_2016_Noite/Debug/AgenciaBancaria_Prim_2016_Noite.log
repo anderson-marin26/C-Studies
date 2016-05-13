@@ -1,0 +1,6 @@
+﻿  Agencia.cpp
+c:\users\anderson\documents\fatec\bortot\2º semestre\agenciabancaria_prim_2016_noite\agenciabancaria_prim_2016_noite\agencia.cpp(142): warning C4477: 'sprintf_s' : format string '%02d' requires an argument of type 'int', but variadic argument 3 has type 'DATA'
+c:\users\anderson\documents\fatec\bortot\2º semestre\agenciabancaria_prim_2016_noite\agenciabancaria_prim_2016_noite\agencia.cpp(142): warning C4473: 'sprintf_s' : not enough arguments passed for format string
+  c:\users\anderson\documents\fatec\bortot\2º semestre\agenciabancaria_prim_2016_noite\agenciabancaria_prim_2016_noite\agencia.cpp(142): note: placeholders and their parameters expect 5 variadic arguments, but 3 were provided
+  c:\users\anderson\documents\fatec\bortot\2º semestre\agenciabancaria_prim_2016_noite\agenciabancaria_prim_2016_noite\agencia.cpp(142): note: the missing variadic argument 4 is required by format string '%02d'
+  AgenciaBancaria_Prim_2016_Noite.vcxproj -> C:\Users\Anderson\Documents\fatec\Bortot\2º Semestre\AgenciaBancaria_Prim_2016_Noite\Debug\AgenciaBancaria_Prim_2016_Noite.exe
