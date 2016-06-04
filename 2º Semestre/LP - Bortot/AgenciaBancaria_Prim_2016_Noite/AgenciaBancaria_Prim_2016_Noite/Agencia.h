@@ -1,6 +1,7 @@
 // Declarações do Programa de Agencia Bancaria
 #include <iostream>
 #include <Windows.h>
+#include <conio.h>
 using namespace std;
 // Definições do programa
 #define PAUSA								system("pause")
@@ -22,6 +23,15 @@ using namespace std;
 #define LISTAR_CADASTRO						'L' //listar a partir de um dado cliente
 #define EXIBIR_SALDO_TOTAL					'T'
 #define SAIR_DO_PROGRAMA					'S'
+
+// teclas
+#define BACK_SPACE			0x08
+#define ENTER				0x0D
+#define BELL				0x07
+#define SPACE				0x20
+
+// prototypes
+//int TestNumerico(int nExtenMax);
 
 //STRUCT da data
 typedef struct tagDATA {

@@ -12,6 +12,7 @@ WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 // Forward declarations of functions included in this code module:
+// prototipos das funções
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -184,6 +185,20 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     return (INT_PTR)FALSE;
 }
 
+// Function for validate the fields
+bool VerificaNumerico(char *ptrString) {
+	int i;
+	for (i = 0; i < strlen(ptrString); i++) {
+		if (*(ptrString + i) < '0' || *(ptrString + i) > '9') {
+			if ((*(ptrString + i) == '-' || *(ptrString + i) == '+') && i == 0) {
+				continue;				// test the next
+			}
+			return false;				// have a non numeric value
+		}
+	}// for i
+	return true;
+}
+
 // Message handler for Sum.
 INT_PTR CALLBACK Somar(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -201,8 +216,19 @@ INT_PTR CALLBACK Somar(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		if (LOWORD(wParam) == IDOK)
 		{
 			GetDlgItemText(hDlg, IDC_EDIT_PRIMEIRA, cWork, 8);
+			// check if this string dont have any non number caracter
+			if (!VerificaNumerico(cWork)) {
+				MessageBox(hDlg, "Valor invalido inserido", "FATEC - MC - Visual Noite", MB_OK | MB_ICONERROR);
+				return (INT_PTR)TRUE;
+			}
 			nPrimeira = atoi(cWork);
 			GetDlgItemText(hDlg, IDC_EDIT_SEGUNDA, cWork, 8);
+			// check if this string dont have any non number caracter
+			if (!VerificaNumerico(cWork)) {
+				MessageBox(hDlg, "Valor invalido inserido", "FATEC - MC - Visual Noite", MB_OK | MB_ICONERROR);
+				return (INT_PTR)TRUE;
+			}
+
 			nSegunda = atoi(cWork);
 			nResultado = nPrimeira + nSegunda;
 			_itoa_s(nResultado, cWork,sizeof(cWork), 10);

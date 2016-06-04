@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Hotel_LP_ProvaP2_Noite">
+</Property><Property Name="Solution File" Value="C:\Users\Fatec\Documents\Visual Studio 2010\Projects\Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite.sln">
+</Property><Property Name="User Options File" Value="C:\Users\Fatec\Documents\Visual Studio 2010\Projects\Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite.suo">
+</Property><Property Name="Date" Value="quarta-feira, 25 de maio de 2016">
+</Property><Property Name="Time" Value="13:16">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="Hotel_LP_ProvaP2_Noite.sln" Description="File successfully backed up as C:\Users\Fatec\Documents\Visual Studio 2010\Projects\Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite.sln.old">
+</Event><Event ErrorLevel="0" Project="" Source="Hotel_LP_ProvaP2_Noite.suo" Description="File successfully backed up as C:\Users\Fatec\Documents\Visual Studio 2010\Projects\Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite.suo.old">
+</Event><Event ErrorLevel="0" Project="Hotel_LP_ProvaP2_Noite" Source="Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite.vcproj" Description="Converting project file 'C:\Users\Fatec\Documents\Visual Studio 2010\Projects\Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite.vcproj'.">
+</Event><Event ErrorLevel="1" Project="Hotel_LP_ProvaP2_Noite" Source="Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="Hotel_LP_ProvaP2_Noite" Source="Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite.vcproj" Description="Done converting to new project file 'C:\Users\Fatec\Documents\Visual Studio 2010\Projects\Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="Hotel_LP_ProvaP2_Noite" Source="Hotel_LP_ProvaP2_Noite\Hotel_LP_ProvaP2_Noite.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Hotel_LP_ProvaP2_Noite.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Hotel_LP_ProvaP2_Noite.sln" Description="Converted">
+</Event></UpgradeLog>

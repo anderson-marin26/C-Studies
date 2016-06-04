@@ -103,25 +103,23 @@ void main(void) {
 				if (nCodCliente == 0) {
 					break;
 				}
+				if (!LerClientePosicional(nCodCliente, &stCliente, fdCadastro)){
+					cout << " Erro de Leitura" << endl;
+					PAUSA;
+					break;
+				}
 				if (stCliente.cAtivo == INATIVO) {
-					cout << "Cliente não cadastrado"<< endl;
-					PAUSA;
-					break;
-				}
-				else if(!LerClientePosicional(nCodCliente, &stCliente, fdCadastro)) {
-					cout << "Erro de leitura" << endl;
-					PAUSA;
-					break;
-				}
-				else if (!GravarClientePosicional(nCodCliente, &stCliente, fdCadastro)) {
-					cout << "Erro durantee e exclusão" << endl;
+					cout << "Cliente não cadastrado!" << endl;
 					PAUSA;
 					break;
 				}
 				else {
 					stCliente.cAtivo = INATIVO;
+					if (!GravarClientePosicional(nCodCliente, &stCliente, fdCadastro))
+					{
+						cout << "Erro de exclusão"<< endl;
+					}
 				}
-
 				break;
 			case MOSTRAR_CLIENTE:
 				nCodCliente = PedirCodigoCliente("Mostrar cliente");
