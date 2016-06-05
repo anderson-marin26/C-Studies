@@ -1,39 +1,4 @@
-﻿Build started 30/05/2016 20:50:39.
-     1>Project "C:\FATEC_MC_PrimeiroSemestre2016\LinguagemProgramacao\EscolaNatacao_P2_Tarde\EscolaNatacao\EscolaNatacao.vcxproj" on node 2 (rebuild target(s)).
-     1>_PrepareForClean:
-         Deleting file "Debug\EscolaNatacao.lastbuildstate".
-       InitializeBuildStatus:
-         Creating "Debug\EscolaNatacao.unsuccessfulbuild" because "AlwaysCreate" was specified.
-       ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Escola.cpp
-         Escola.cpp
-     1>c:\fatec_mc_primeirosemestre2016\linguagemprogramacao\escolanatacao_p2_tarde\escolanatacao\escola.cpp(18): warning C4101: 'dValorMensalidade' : unreferenced local variable
-     1>c:\fatec_mc_primeirosemestre2016\linguagemprogramacao\escolanatacao_p2_tarde\escolanatacao\escola.cpp(13): warning C4101: 'i' : unreferenced local variable
-     1>c:\fatec_mc_primeirosemestre2016\linguagemprogramacao\escolanatacao_p2_tarde\escolanatacao\escola.cpp(12): warning C4101: 'nQtdeTotalDeRaias' : unreferenced local variable
-     1>c:\fatec_mc_primeirosemestre2016\linguagemprogramacao\escolanatacao_p2_tarde\escolanatacao\escola.cpp(14): warning C4101: 'fdQuantidade' : unreferenced local variable
-     1>c:\fatec_mc_primeirosemestre2016\linguagemprogramacao\escolanatacao_p2_tarde\escolanatacao\escola.cpp(13): warning C4101: 'j' : unreferenced local variable
-     1>c:\fatec_mc_primeirosemestre2016\linguagemprogramacao\escolanatacao_p2_tarde\escolanatacao\escola.cpp(235): warning C4101: 'stRaia' : unreferenced local variable
-     1>c:\fatec_mc_primeirosemestre2016\linguagemprogramacao\escolanatacao_p2_tarde\escolanatacao\escola.cpp(275): warning C4101: 'stRaia' : unreferenced local variable
-     1>c:\fatec_mc_primeirosemestre2016\linguagemprogramacao\escolanatacao_p2_tarde\escolanatacao\escola.cpp(93): warning C4700: uninitialized local variable 'stQtRaias' used
-     1>c:\fatec_mc_primeirosemestre2016\linguagemprogramacao\escolanatacao_p2_tarde\escolanatacao\escola.cpp(120): warning C4700: uninitialized local variable 'nPosicionalRaia' used
-       ManifestResourceCompile:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\EscolaNatacao.exe.embed.manifest.res" Debug\EscolaNatacao_manifest.rc 
-       Link:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\FATEC_MC_PrimeiroSemestre2016\LinguagemProgramacao\EscolaNatacao_P2_Tarde\Debug\EscolaNatacao.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\EscolaNatacao.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\FATEC_MC_PrimeiroSemestre2016\LinguagemProgramacao\EscolaNatacao_P2_Tarde\Debug\EscolaNatacao.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\FATEC_MC_PrimeiroSemestre2016\LinguagemProgramacao\EscolaNatacao_P2_Tarde\Debug\EscolaNatacao.lib" /MACHINE:X86 Debug\EscolaNatacao.exe.embed.manifest.res
-         Debug\Escola.obj
-       Manifest:
-         Deleting file "Debug\EscolaNatacao.exe.embed.manifest".
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\EscolaNatacao.exe.embed.manifest" /manifest Debug\EscolaNatacao.exe.intermediate.manifest
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\EscolaNatacao.exe.embed.manifest.res" Debug\EscolaNatacao_manifest.rc 
-       LinkEmbedManifest:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\FATEC_MC_PrimeiroSemestre2016\LinguagemProgramacao\EscolaNatacao_P2_Tarde\Debug\EscolaNatacao.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\EscolaNatacao.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\FATEC_MC_PrimeiroSemestre2016\LinguagemProgramacao\EscolaNatacao_P2_Tarde\Debug\EscolaNatacao.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\FATEC_MC_PrimeiroSemestre2016\LinguagemProgramacao\EscolaNatacao_P2_Tarde\Debug\EscolaNatacao.lib" /MACHINE:X86 Debug\EscolaNatacao.exe.embed.manifest.res
-         Debug\Escola.obj
-         EscolaNatacao.vcxproj -> C:\FATEC_MC_PrimeiroSemestre2016\LinguagemProgramacao\EscolaNatacao_P2_Tarde\Debug\EscolaNatacao.exe
-       FinalizeBuildStatus:
-         Deleting file "Debug\EscolaNatacao.unsuccessfulbuild".
-         Touching "Debug\EscolaNatacao.lastbuildstate".
-     1>Done Building Project "C:\FATEC_MC_PrimeiroSemestre2016\LinguagemProgramacao\EscolaNatacao_P2_Tarde\EscolaNatacao\EscolaNatacao.vcxproj" (rebuild target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:03.96
+﻿  Escola.cpp
+c:\users\anderson\documents\fatec\bortot\2º semestre\lp - bortot\p2 bortot - resolução\escolanatacao\escola.cpp(13): warning C4101: 'j': unreferenced local variable
+c:\users\anderson\documents\fatec\bortot\2º semestre\lp - bortot\p2 bortot - resolução\escolanatacao\escola.cpp(13): warning C4101: 'i': unreferenced local variable
+  EscolaNatacao.vcxproj -> C:\Users\Anderson\Documents\fatec\Bortot\2º Semestre\LP - Bortot\p2 bortot - resolução\Debug\EscolaNatacao.exe

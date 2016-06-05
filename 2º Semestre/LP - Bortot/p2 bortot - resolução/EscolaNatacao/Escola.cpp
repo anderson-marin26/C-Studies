@@ -17,7 +17,7 @@ void main(void)
 	QTDE_RAIAS stQtRaias;						// struct para conter os dados da qtde raias da piscina
 	double dValorMensalidade;					// para calcular a mensalidade
 	char cOpcao,								// opcao do operador
-		cNomeAluno[] = "Preencher com seu nome", // para conter o nome do aluno que está fazendo a prova
+		cNomeAluno[] = "Anderson Marin de Ramos", // para conter o nome do aluno que está fazendo a prova
 		cWork[200];								// para sprintf_s
 	SYSTEMTIME stTime;							// para data e hora do sistema
 	char vetNomesPeriodos[QTDE_PERIODOS][7] =
@@ -60,6 +60,76 @@ void main(void)
 	//			2.3.2.1 - Se houve erro de abertura avisar ao operador e abortar a execução do programa
 	//			2.3.2.2 - Se o arquivo foi aberto com sucesso ir para o menu do operador
 
+	// abertura arquivo de quantidades
+	if (fopen_s(&fdQuantidade, CAMINHO_QUANTIDADE, "r+b") != 0) 
+	{// arquivo não existe
+		// criacao do arquivo de quantidades
+		if (fopen_s(&fdQuantidade, CAMINHO_QUANTIDADE, "w+b") != 0)
+		{// erro de abertura 
+			cout << "Erro de abertura do arquivo de Quantidades" << endl;
+			PAUSA;
+			return;
+		}
+
+		// aberto com sucesso
+		do
+		{
+			cout << "Digite a quantidade de raias disponivel entre " << QTDE_MINIMA_RAIAS_PISCINA << " e " << QTDE_MAXIMA_RAIAS_PISCINA << " :" << endl;
+			cin >> nQtdeTotalDeRaias;
+			//cin >> stQtRaias.nQtdeRaias;
+		} while (nQtdeTotalDeRaias<QTDE_MINIMA_RAIAS_PISCINA||nQtdeTotalDeRaias>QTDE_MAXIMA_RAIAS_PISCINA);
+		stQtRaias.nQtdeRaias = nQtdeTotalDeRaias;
+		// gravando no arquivo a quantidade de raias
+		if (fwrite(&stQtRaias, sizeof(QTDE_RAIAS), 1, fdQuantidade) == 0)
+		{// erro de gravacao
+			cout << "Erro de gravação do arquivo de quantidades." << endl;
+			PAUSA;
+			return;
+		}
+
+		// abrindo arquivo de raias
+		if (fopen_s(&fdRaia, CAMINHO_RAIA, "w+b") != 0)
+		{// erro de abertura
+			cout << "Erro de abertura do arquivo de raias" << endl;
+			PAUSA;
+			return;
+		}
+		for (int i = 1; i <= QTDE_PERIODOS; i++)
+		{
+			for (int j = 1; j <= stQtRaias.nQtdeRaias; j++)
+			{
+				stRaia.flgRaiaOcupada = false;
+				stRaia.nPeriodo = i;
+				stRaia.nRaia = j;
+				nPosicionalRaia = (((i - 1) * nQtdeTotalDeRaias) + (j - 1));
+				if (!GravaPosicional(nPosicionalRaia * sizeof(RAIA), &stRaia, &fdRaia))
+				{
+					cout << "Falha ao inicializar o arquivo de raias";
+					PAUSA;
+					return;
+				}
+			}
+		}
+		fclose(fdRaia);
+	}
+
+	// arquivo existe
+
+	// lendo arquivo de quantidades
+	if (fread_s(&stQtRaias, sizeof(RAIA), 1, 1, fdQuantidade) == 0)
+	{// erro de leitura
+		cout << "Erro de leitura do arquivo de quantidades" << endl;
+		PAUSA;
+		return;
+	}
+	fclose(fdQuantidade);
+
+	if (fopen_s(&fdRaia, CAMINHO_RAIA, "r+b"))
+	{// erro de abertura
+		cout << "Erro de abertura do arquivo de raias" << endl;
+		PAUSA;
+		return;
+	}
 
 	//	Loop Infinito
 	while(true)
@@ -84,6 +154,7 @@ void main(void)
 		switch(cOpcao)								// avalia a opção escolhida
 		{
 			case MATRICULAR_ALUNO:
+
 				// grande parte já codificado 
 
 				nPeriodo = PedirPeriodo(QTDE_PERIODOS, "Matricular Aluno");
@@ -111,11 +182,15 @@ void main(void)
 				//		VALOR_MENSALIDADE e a cada parente (nQtdeParentes) é dado um
 				// desconto de 10% até no máximo de 40% se tiver 4 parentes com o mesmo
 				//	sobrenome). Copiar o valor calculado em stRaia.dVlrMensalidade
+				stRaia.dVlrMensalidade = VALOR_MENSALIDADE * (1 - (VALOR_DESCONTO_POR_PARENTE / 100));
+
 				
 				//
 				// calcular o indice desta raia para saber o posicional da raia dentro do arquivo de
 				//	raias - é função do periodo, quantidade de raias da piscina e a raia da piscina
 				// armazenar este cálculo em nPosicionalRaia
+
+				nPosicionalRaia = (((nPeriodo - 1)*stQtRaias.nQtdeRaias) + (nRaia - 1) * sizeof(RAIA));
 				stRaia.flgRaiaOcupada = true;				// indica que a raia está ocupada
 				if(!GravaPosicional(nPosicionalRaia, &stRaia, &fdRaia)) // erro de gravação?
 				{
@@ -136,6 +211,23 @@ void main(void)
 				//			Se o operador confirmar com S ou s, gravar a raia com a função
 				//				gravar posicional.
 				//			voltar ao menu principal
+				if (PedirPeriodoRaia(&nPeriodo, &nRaia, 3, stQtRaias.nQtdeRaias, "Excluir Aluno") == 0)
+				{
+					break;
+				}
+				nPosicionalRaia = (((nPeriodo - 1)*stQtRaias.nQtdeRaias) + (nRaia - 1));
+				LerPosicional(nPosicionalRaia, &stRaia, &fdRaia);
+				sprintf_s(cWork, sizeof(cWork), "Nome: %20s sobrenome %-20s\nRaia: %2d Periodo: %1d\nMensalidade: %10.2f",
+					stRaia.cNome, stRaia.cSobreNome, stRaia.nRaia, stRaia.nPeriodo, stRaia.dVlrMensalidade);
+				cout << cWork << endl;
+				PAUSA;
+				cout << "deseja excluir?" << endl;
+				cin >> cOpcao;
+				if (cOpcao == 's' || cOpcao == 'S') {
+					stRaia.flgRaiaOcupada = false;
+					GravaPosicional(nPosicionalRaia, &stRaia, &fdRaia);
+				}
+				break;
 				break;								// cai fora do switch e volta ao menu
 			case EXIBIR_DADOS_ALUNO:
 				// <<<10>>>  Chamar a função que pede o periodo e a raia indicando que a ação é
@@ -145,6 +237,14 @@ void main(void)
 				//			Verificar se a raia está ocupada
 				//			Se não estiver ocupada avisar ao operador e voltar ao menu
 				//			Se estiver ocupada, exibir todos os dados da raia e dar uma pausa
+				if (PedirPeriodoRaia(&nPeriodo, &nRaia, 3, stQtRaias.nQtdeRaias, "Mostrar aluno") == 0)					// cancelou a ação?
+					break;
+				nPosicionalRaia = (((nPeriodo - 1)* stQtRaias.nQtdeRaias) + (nRaia - 1)) * sizeof(RAIA);
+				LerPosicional(nPosicionalRaia, &stRaia, &fdRaia);
+				sprintf_s(cWork, sizeof(cWork), "Nome: %20s sobrenome %-20s\nRaia: %2d Periodo: %1d\nMensalidade: %10.2f",
+					stRaia.cNome, stRaia.cSobreNome, stRaia.nRaia, stRaia.nPeriodo, stRaia.dVlrMensalidade);
+				cout << cWork << endl;
+				PAUSA;
 				break;								// voltar ao menu
 			case LISTAR_PERIODO:				
 				// <<<15>>> Pedir um período válido ou zero para cancelar a ação de listar
@@ -166,6 +266,22 @@ void main(void)
 				//		Fazer um looping lendo posicional de cada raia do periodo e
 				//			listar no formato acima pedido se a raia estiver ocupada.
 				//		Fazer a somatória de mensalidades deste período.
+				//		Fazer a somatória de mensalidades deste período.
+				nPeriodo = PedirPeriodo(QTDE_PERIODOS, "Listar periodo");
+				if (nPeriodo == 0)
+					break;
+				dValorMensalidade = 0;
+				for (int i = 1; i < stQtRaias.nQtdeRaias; i++)
+				{
+					nPosicionalRaia = (((nPeriodo - 1)* stQtRaias.nQtdeRaias) + (i - 1)) * sizeof(RAIA);
+					LerPosicional(nPosicionalRaia, &stRaia, &fdRaia);
+					sprintf_s(cWork, sizeof(cWork), "Nome: %20s sobrenome %-20s\nRaia: %2d Periodo: %1d\nMensalidade: %10.2f",
+						stRaia.cNome, stRaia.cSobreNome, stRaia.nRaia, stRaia.nPeriodo, stRaia.dVlrMensalidade);
+					cout << cWork << endl;
+					dValorMensalidade = dValorMensalidade + stRaia.dVlrMensalidade;
+				}
+				cout << "O total de mensalidades nesse periodo é de: R$" << dValorMensalidade << endl;
+				PAUSA;
 				break;								// cai fora do switch
 			case SAIR_DO_PROGRAMA:					
 				cout << "Vai sair realmente? (S ou N): ";
@@ -233,7 +349,7 @@ bool PedirPeriodoRaia(int *ptrPeriodo, int *ptrRaia,
 int BuscarRaiaLivreNoPeriodo(int nPeriodo, int nQtRaiasPiscina, RAIA *ptrStRaia, FILE **fdRaia)
 {
 	RAIA stRaia;						// buffer de leitura de cada raia
-
+	int nPosicional;					// para armazenar o posicional
 	// em função do período desejado e a quantidade de raias da piscina
 	//	calcular o posicional da primeira raia do periodo desejado.
 	// posicionar com o fseek na primeira raia do período ( se der erro - devolve zero)
@@ -242,6 +358,28 @@ int BuscarRaiaLivreNoPeriodo(int nPeriodo, int nQtRaiasPiscina, RAIA *ptrStRaia,
 	// Se encontrou uma raia livre devolve o seu número e copie os dados desta raia em
 	//		uma struct apontada por ptrStRaia
 	// ou devolve zero se não encontrou nenhuma livre.
+	for (int i = 1; i <= nQtRaiasPiscina; i++)
+	{
+		nPosicional = (((nPeriodo - 1)*nQtRaiasPiscina) + (i - 1));
+		if (fseek(*(fdRaia), nPosicional * sizeof(RAIA), SEEK_SET) != 0)
+		{
+			cout << "Erro de indexação" << endl;
+			PAUSA;
+			return 0;
+		}
+		if (fread_s(&stRaia, sizeof(RAIA), sizeof(RAIA), 1, *fdRaia) == 0)
+		{
+			cout << "Erro ao ler a raia no arquivo de raias" << endl;
+			PAUSA;
+			return 0;
+		}
+		if (stRaia.flgRaiaOcupada == false)
+		{
+			*ptrStRaia = stRaia;
+			return i;
+		}
+
+	}
 	
 	return 0;							// para não dar erro
 }
@@ -281,6 +419,32 @@ int VerificaParentes(char *ptrSobrenome, FILE **fdRaia)
 	// se tiver o mesmo sobrenome somar um no nContador e verificar se chegou a 4.
 	// se chegou a 4 retornar este valor.
 	// se chegou ao fim do arquivo retornar o nContador.
+	for (int i = 0; i < sizeof(fdRaia); i++)
+	{
+		if (fseek(*fdRaia, i, SEEK_SET) !=0)
+		{
+			cout << "Erro de indexação" << endl;
+			PAUSA;
+			return 0;
+		}
+
+		if (fread_s(&stRaia, sizeof(RAIA), 1, 1, *fdRaia) == 0)
+		{
+			cout << "Erro de leitura do arquivo de raias" << endl;
+			PAUSA;
+			return 0;
+		}
+		
+		if (stRaia.cSobreNome == ptrSobrenome)
+		{
+			nContador++;
+			if (nContador == 4)
+			{
+				return nContador;
+			}
+		}
+
+	}
 	return nContador;					// retornar o que foi encontrado
 }
 
@@ -296,6 +460,18 @@ bool GravaPosicional(int nPosicional, RAIA *ptrStRaia, FILE **fdRaia)
 	
 	// posicionar na raia através do fseek
 	// gravar os dados que foram passados com o fwrite.
+	if (fseek(*(fdRaia), nPosicional, SEEK_SET) != 0)
+	{// erro de procura
+		cout << "Erro de indexação do arquivo";
+		PAUSA;
+		return false;
+	}
+	if (fwrite(ptrStRaia, sizeof(RAIA), 1, *fdRaia) == 0)
+	{// não gravou nada
+		cout << "Erro de gravação das posições da raia" << endl;
+		PAUSA;
+		return false;
+	}
 	return true;								// para não dar erro de compilação ????????????
 }
 
@@ -311,5 +487,17 @@ bool LerPosicional(int nPosicional, RAIA *ptrStRaia, FILE **fdRaia)
 	
 	// posicionar na raia através do fseek
 	// ler os dados para a struct que foi passada com fread_s
+	if (fseek(*(fdRaia), sizeof(RAIA), SEEK_SET) != 0)
+	{
+		cout << "Erro de indexação";
+		PAUSA;
+		return 0;
+	}
+	if (fread_s(ptrStRaia, sizeof(RAIA), 1, 1, *fdRaia) == 0)
+	{
+		cout << "Erro de leitura da raia";
+		PAUSA;
+		return 0;
+	}
 	return true;								// para não dar erro de compilação ????????????
 }
