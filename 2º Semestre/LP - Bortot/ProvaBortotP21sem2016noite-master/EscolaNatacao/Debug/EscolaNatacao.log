@@ -1,0 +1,5 @@
+﻿  Escola.cpp
+d:\coisas raul\coisas\bortot\escolanatacao_p2_noite_raulvictorcoan\escolanatacao\escola.cpp(13): warning C4101: 'j': unreferenced local variable
+d:\coisas raul\coisas\bortot\escolanatacao_p2_noite_raulvictorcoan\escolanatacao\escola.cpp(13): warning C4101: 'i': unreferenced local variable
+d:\coisas raul\coisas\bortot\escolanatacao_p2_noite_raulvictorcoan\escolanatacao\escola.cpp(444): warning C4715: 'VerificaParentes': not all control paths return a value
+  EscolaNatacao.vcxproj -> D:\Coisas Raul\coisas\bortot\EscolaNatacao_P2_Noite_RaulVictorCoan\Debug\EscolaNatacao.exe

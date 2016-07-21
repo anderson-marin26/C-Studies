@@ -1,0 +1,3 @@
+﻿  PontoDeVenda.cpp
+c:\users\anderson\desktop\pontodevenda_exame_noite\pontodevenda_06_04_2016\pontodevenda.cpp(255): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  PontoDeVenda_06_04_2016.vcxproj -> C:\Users\Anderson\Desktop\PontoDeVenda_Exame_Noite\Debug\PontoDeVenda_06_04_2016.exe

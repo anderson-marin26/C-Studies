@@ -110,7 +110,7 @@ void main(void)
 				cout << "Preço unitario do produto: " << endl;
 				cin >> vetProdutos[nCodigo].dPrecoUnitario;
                 // 5. Indicar que o produto está cadastrado
-				cout << "Produto " << vetProdutos[nCodigo].cDescricao <<vetProdutos[nCodigo].nCodigoProduto<<" cadastrado com sucesso"<<endl;
+				cout << "Produto " << vetProdutos[nCodigo].cDescricao << vetProdutos[nCodigo].nCodigoProduto << " cadastrado com sucesso" << endl;
 				vetProdutos[nCodigo].nCodigoProduto = nCodigo;
 				vetProdutos[nCodigo].flgAtivo = true;
 				PAUSA;
